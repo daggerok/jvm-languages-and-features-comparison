@@ -1,0 +1,48 @@
+dist: xenial
+env:
+  global:
+    - TERM=dumb
+git:
+  quiet: true
+  depth: 1
+language: java
+jdk: openjdk8
+python: 3
+addons:
+  apt:
+    update: true
+    packages:
+      - python3-dev
+      - python3-pip
+      - python3-six
+      - python3-setuptools
+      - libxml2-utils
+      - unzip
+      - sudo
+      - lsof
+      - wget
+      - bash
+      - curl
+      - jq
+install: true
+before_install:
+  - pip -V || echo 'pip binary cannot be found.'
+  - pip3 -V || echo 'pip3 binary cannot be found.'
+  - export PATH=$HOME/.local/bin:$PATH
+  - pip3 install --user $(whoami) --upgrade pip >/dev/null # pip3 -> pip
+  - pip install --user $(whoami) --upgrade httpie >/dev/null 2>&1
+  - http --version --debug || echo 'http (HTTPie) binary cannot be found.'
+  - pip3 -V || echo 'pip3 binary cannot be found.'
+  - pip -V || echo 'pip binary cannot be found.'
+  #
+  - source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
+  - stop_any 5432 5672 27017 80
+script:
+  - export root=$(pwd)
+  #
+  - ./gradlew
+cache:
+  directories:
+    - ~/.gradle
+  packages: true
+  pip: true

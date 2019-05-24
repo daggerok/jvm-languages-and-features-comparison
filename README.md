@@ -1,4 +1,4 @@
-# Compare JVM languages and features
+# Compare JVM languages and features [![Build Status](https://travis-ci.org/daggerok/jvm-languages-and-features-comparison.svg?branch=master)](https://travis-ci.org/daggerok/jvm-languages-and-features-comparison)
 Gradle Kotlin DSL for multi-module multi-language mono-repo
  
 _requires jdk 11, or use jevn, like so:_
