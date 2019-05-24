@@ -10,7 +10,7 @@ class MainTest extends FunSuite with Matchers {
     val hello = Hello()
     hello should not be None
     hello.message should not be None
-    hello.greet() should equal("Hello, Scala!")
+    hello.greet should equal("Hello, Scala!")
 
     val args = Array[String]()
     args should have size 0
